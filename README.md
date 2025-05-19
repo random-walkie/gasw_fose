@@ -6,5 +6,5 @@ This repository contains my coursework, projects, and study materials for the Fu
 This section contains my completed exercises from the "Software Engineering" book by Ian Sommerville (10th Edition)
 
 ## Course Information
-Course Code: M1l326710
+Course Code: M1l326710   
 Term: TriC 2025
