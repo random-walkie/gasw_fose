@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FSE Meeting Agenda - Interactive</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .agenda-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .header .subtitle {
+      font-style: italic;
+      color: #7f8c8d;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .instructions {
+      font-size: 0.95em;
+      color: #666;
+      background: #f8f9fa;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #17a2b8;
+    }
+
+    .agenda-section {
+      background: #f8f9fa;
+      border-left: 4px solid #3498db;
+      margin: 25px 0;
+      padding: 20px 25px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .agenda-section:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-number {
+      background: #3498db;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      margin: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    .agenda-checkbox {
+      margin-right: 15px;
+      margin-top: 3px;
+      transform: scale(1.4);
+      cursor: pointer;
+      accent-color: #27ae60;
+      flex-shrink: 0;
+    }
+
+    .checklist li.completed {
+      color: #666;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .checklist li.completed .agenda-checkbox {
+      opacity: 0.8;
+    }
+
+    .progress-section {
+      margin-top: 40px;
+      padding: 25px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 12px;
+      border-left: 6px solid #27ae60;
+      text-align: center;
+    }
+
+    .progress-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .progress-stats {
+      font-size: 1.2em;
+      color: #34495e;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      background: #ecf0f1;
+      border-radius: 25px;
+      height: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
+      border-radius: 25px;
+      transition: width 0.5s ease;
+      position: relative;
+    }
+
+    .progress-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 0.9em;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .completion-badge {
+      display: none;
+      background: #27ae60;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-top: 20px;
+      animation: bounce 0.6s ease;
+    }
+
+    .completion-badge.show {
+      display: inline-block;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    .reset-button {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .reset-button:hover {
+      background: #c0392b;
+    }
+
+    .meeting-info {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      font-size: 0.95em;
+    }
+
+    .print-button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      margin: 20px 10px 0 0;
+      transition: background 0.3s ease;
+    }
+
+    .print-button:hover {
+      background: #2980b9;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .agenda-container {
+        box-shadow: none;
+        margin: 0;
+        padding: 20px;
+      }
+      .print-button, .reset-button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="agenda-container">
+  <div class="header">
+    <h1>Meeting Agenda</h1>
+    <div class="subtitle">Fundamentals of Software Engineering - Coursework Planning</div>
+  </div>
+
+  <div class="meeting-info">
+    <strong>📅 Meeting Type:</strong> Introduction & Planning Meeting<br>
+    <strong>🎯 Objective:</strong> Establish team structure, assign tasks, and create project roadmap<br>
+    <strong>⏱️ Estimated Duration:</strong> 60-90 minutes
+  </div>
+
+  <div class="instructions">
+    <strong>📋 How to use:</strong> Click the checkboxes as you complete each agenda item. Your progress will be tracked automatically!
+  </div>
+
+  <div class="agenda-section">
+    <div class="section-title">
+      <div class="section-number">1</div>
+      Team Organisation
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" class="agenda-checkbox" data-section="1"> Who attended/who was absent</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="1"> Role assignments agreed (note-takers, group leader, etc.)</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="1"> Communication protocols established</li>
+    </ul>
+  </div>
+
+  <div class="agenda-section">
+    <div class="section-title">
+      <div class="section-number">2</div>
+      Scenario Understanding
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" class="agenda-checkbox" data-section="2"> Discussion of Work Wear 4U business model</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="2"> Key processes identified (ordering, delivery, inventory)</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="2"> Initial questions or clarifications needed</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="2"> Shared understanding of the system scope</li>
+    </ul>
+  </div>
+
+  <div class="agenda-section">
+    <div class="section-title">
+      <div class="section-number">3</div>
+      Task Planning
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" class="agenda-checkbox" data-section="3"> Stakeholder allocation decided (who researches which stakeholder)</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="3"> Use case task assignments (leader + reviewer pairs)</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="3"> Story card task assignments (leader + reviewer pairs)</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="3"> Non-functional requirements category split</li>
+    </ul>
+  </div>
+
+  <div class="agenda-section">
+    <div class="section-title">
+      <div class="section-number">4</div>
+      Work Standards Agreement
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" class="agenda-checkbox" data-section="4"> Template usage confirmed</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="4"> Quality expectations discussed</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="4"> Review process agreed</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="4"> Meeting schedule for Meetings 2 & 3</li>
+    </ul>
+  </div>
+
+  <div class="agenda-section">
+    <div class="section-title">
+      <div class="section-number">5</div>
+      Next Steps
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" class="agenda-checkbox" data-section="5"> Individual action items assigned with deadlines</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="5"> Next meeting date/time confirmed</li>
+      <li><input type="checkbox" class="agenda-checkbox" data-section="5"> Any immediate blockers or concerns raised</li>
+    </ul>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-title">📊 Meeting Progress</div>
+    <div class="progress-stats">
+      <span id="progress-count">0</span> of <span id="total-count">19</span> items completed
+      (<span id="progress-percent">0</span>%)
+    </div>
+    <div class="progress-bar-container">
+      <div id="progress-bar" class="progress-bar" style="width: 0%;">
+        <div class="progress-text"><span id="progress-percent-bar">0</span>%</div>
+      </div>
+    </div>
+    <div id="completion-badge" class="completion-badge">
+      🎉 Meeting Complete! Great job team! 🎉
+    </div>
+    <div>
+      <button class="print-button" onclick="window.print()">🖨️ Print Agenda</button>
+      <button class="reset-button" onclick="resetProgress()">🔄 Reset All</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let totalItems = 0;
+
+  function updateProgress() {
+    const checkboxes = document.querySelectorAll('.agenda-checkbox');
+    const checkedBoxes = document.querySelectorAll('.agenda-checkbox:checked');
+    totalItems = checkboxes.length;
+    const completedItems = checkedBoxes.length;
+    const percentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+
+    // Update progress display
+    document.getElementById('progress-count').textContent = completedItems;
+    document.getElementById('total-count').textContent = totalItems;
+    document.getElementById('progress-percent').textContent = percentage;
+    document.getElementById('progress-percent-bar').textContent = percentage;
+    document.getElementById('progress-bar').style.width = percentage + '%';
+
+    // Update visual styling for completed items
+    checkboxes.forEach(checkbox => {
+      const listItem = checkbox.closest('li');
+      if (checkbox.checked) {
+        listItem.classList.add('completed');
+      } else {
+        listItem.classList.remove('completed');
+      }
+    });
+
+    // Show completion badge when 100%
+    const completionBadge = document.getElementById('completion-badge');
+    if (percentage === 100 && completedItems > 0) {
+      completionBadge.classList.add('show');
+    } else {
+      completionBadge.classList.remove('show');
+    }
+
+    // Update section progress indicators
+    updateSectionProgress();
+  }
+
+  function updateSectionProgress() {
+    for (let i = 1; i <= 5; i++) {
+      const sectionCheckboxes = document.querySelectorAll(`[data-section="${i}"]`);
+      const sectionChecked = document.querySelectorAll(`[data-section="${i}"]:checked`);
+      const sectionNumber = document.querySelector(`.agenda-section:nth-of-type(${i}) .section-number`);
+
+      if (sectionChecked.length === sectionCheckboxes.length && sectionCheckboxes.length > 0) {
+        sectionNumber.style.background = '#27ae60';
+        sectionNumber.innerHTML = '✓';
+      } else {
+        sectionNumber.style.background = '#3498db';
+        sectionNumber.innerHTML = i;
+      }
+    }
+  }
+
+  function resetProgress() {
+    if (confirm('Are you sure you want to reset all checkboxes? This will clear all progress.')) {
+      const checkboxes = document.querySelectorAll('.agenda-checkbox');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      updateProgress();
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.agenda-checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateProgress);
+    });
+
+    // Initialize progress
+    updateProgress();
+  });
+
+  // Auto-save progress to localStorage
+  function saveProgress() {
+    const checkboxes = document.querySelectorAll('.agenda-checkbox');
+    const progress = {};
+    checkboxes.forEach((checkbox, index) => {
+      progress[index] = checkbox.checked;
+    });
+    localStorage.setItem('meeting-agenda-progress', JSON.stringify(progress));
+  }
+
+  function loadProgress() {
+    const saved = localStorage.getItem('meeting-agenda-progress');
+    if (saved) {
+      const progress = JSON.parse(saved);
+      const checkboxes = document.querySelectorAll('.agenda-checkbox');
+      checkboxes.forEach((checkbox, index) => {
+        if (progress[index]) {
+          checkbox.checked = true;
+        }
+      });
+      updateProgress();
+    }
+  }
+
+  // Add save functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    loadProgress();
+
+    const checkboxes = document.querySelectorAll('.agenda-checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        updateProgress();
+        saveProgress();
+      });
+    });
+  });
+</script>
+</body>
+</html>

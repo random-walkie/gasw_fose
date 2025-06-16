@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSE Coursework Planning</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            min-height: 100vh;
+        }
+        .slide {
+            padding: 60px;
+            min-height: calc(100vh - 120px);
+            display: none;
+            page-break-after: always;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .slide h2 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .slide h3 {
+            color: #2980b9;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .agenda-item {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 5px;
+        }
+        .task-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #e74c3c;
+        }
+        .task-title {
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .marks {
+            background: #27ae60;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .key-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .deadline {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #721c24;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .nav-btn:hover {
+            background: #2980b9;
+        }
+        .nav-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        .highlight {
+            background: #ffffcc;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .scenario-box {
+            background: #e8f4fd;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="presentation-container">
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <div style="text-align: center; padding-top: 100px;">
+            <h1 style="font-size: 3em; border: none;">Fundamentals of Software Engineering</h1>
+            <h2 style="color: #7f8c8d;">Coursework Introduction & Planning Meeting</h2>
+            <div style="margin-top: 50px; font-size: 1.2em;">
+                <p><strong>Module:</strong> M1I326710-24-C</p>
+                <p><strong>Weight:</strong> 50% of overall module mark</p>
+                <p><strong>Due:</strong> Friday, 18th July 2025 by 17:00</p>
+            </div>
+            <div class="key-info" style="margin-top: 50px;">
+                <strong>Team Success Factors:</strong> Clear communication, shared understanding, collaborative planning
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Scenario Overview -->
+    <div class="slide">
+        <h1>Project Scenario: Work Wear 4U</h1>
+
+        <div class="scenario-box">
+            <h3>Company Profile</h3>
+            <ul>
+                <li><strong>Business:</strong> Specialist work wear clothing retailer</li>
+                <li><strong>Structure:</strong> Several shops nationwide with Head Office</li>
+                <li><strong>Target Markets:</strong>
+                    <ul>
+                        <li>Tradespeople (Plumbers, Joiners, Electricians)</li>
+                        <li>Healthcare workers (Nursing, care homes, physiotherapists, dentists)</li>
+                        <li>General public (walk-in customers)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="scenario-box">
+            <h3>Current System Challenges</h3>
+            <ul>
+                <li>Manual ordering process through Head Office</li>
+                <li>Multiple UK suppliers with different stock policies</li>
+                <li>Overseas supplier from China (container deliveries every 4 months)</li>
+                <li>Warehouse operations for specialist items</li>
+                <li>Account customers and personalisation services</li>
+            </ul>
+        </div>
+
+        <div class="key-info">
+            <strong>Our Role:</strong> Caledonian Consulting Ltd has been commissioned to investigate the current system and suggest improvements
+        </div>
+    </div>
+
+    <!-- Slide 3: Marking Scheme Overview -->
+    <div class="slide">
+        <h1>Marking Scheme (100 Total Marks)</h1>
+
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Marks</th>
+                <th>Percentage</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td>Group Coursework</td>
+                <td>95</td>
+                <td>95%</td>
+                <td>Collaborative</td>
+            </tr>
+            <tr>
+                <td>Peer Review Report</td>
+                <td>5</td>
+                <td>5%</td>
+                <td>Individual</td>
+            </tr>
+        </table>
+
+        <div class="key-info">
+            <h3>Important Notes:</h3>
+            <ul>
+                <li><strong>Same Group Mark:</strong> All team members receive the same mark for group work</li>
+                <li><strong>Individual Assessment:</strong> Peer review allows individual contribution recognition</li>
+                <li><strong>Module Weight:</strong> This coursework = 50% of total module mark</li>
+                <li><strong>Remaining 50%:</strong> Class test in Week 11 (Monday 28th July 2025)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 4: Task 1 Details -->
+    <div class="slide">
+        <h1>Task 1: Stakeholder Register</h1>
+
+        <div class="task-box">
+            <div class="task-title">Stakeholder Register<span class="marks">20 marks</span></div>
+            <p><strong>Requirement:</strong> Produce a full and detailed list of stakeholders in the proposed new system</p>
+
+            <h3>Deliverables:</h3>
+            <ul>
+                <li>Identify at least <strong>4 key stakeholders</strong></li>
+                <li>Detailed discussion of what each stakeholder needs/gets from the system</li>
+                <li>Use template from Appendix A</li>
+            </ul>
+
+            <h3>Template Fields:</h3>
+            <ul>
+                <li>Full name</li>
+                <li>Job Role</li>
+                <li>Job Responsibilities</li>
+                <li>What does he/she want/get from the system</li>
+                <li>Power/Interest in project (High, Medium, Low)</li>
+                <li>Potential Management Strategies</li>
+            </ul>
+        </div>
+
+        <div class="key-info">
+            <strong>Success Tip:</strong> Think broadly - stakeholders include users, customers, management, IT staff, suppliers, and regulatory bodies
+        </div>
+    </div>
+
+    <!-- Slide 5: Task 2 Details -->
+    <div class="slide">
+        <h1>Task 2: Use Case Forms & Diagrams</h1>
+
+        <div class="task-box">
+            <div class="task-title">Use Case Modeling<span class="marks">30 marks</span></div>
+
+            <h3>Task 2a (15 marks): "Place Order from a retail shop"</h3>
+            <ul>
+                <li>Use Case Diagram (10 marks)</li>
+                <li>Use Case Textual Description (5 marks)</li>
+            </ul>
+
+            <h3>Task 2b (15 marks): "Generate Delivery Note for Retail Outlet"</h3>
+            <ul>
+                <li>Use Case Diagram (10 marks)</li>
+                <li>Use Case Textual Description (5 marks)</li>
+                <li>Focus: Specialist outdoor garments from Chinese supplier</li>
+            </ul>
+        </div>
+
+        <div class="key-info">
+            <h3>Use Case Textual Description Template:</h3>
+            <ul>
+                <li>Use Case Name</li>
+                <li>Actors</li>
+                <li>Brief Description</li>
+                <li>Pre-condition</li>
+                <li>Post-condition</li>
+                <li>Normal Flow of Events</li>
+                <li>Alternative Flow of Events</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 6: Task 3 Details -->
+    <div class="slide">
+        <h1>Task 3: XP Style Story Cards</h1>
+
+        <div class="task-box">
+            <div class="task-title">Extreme Programming Story Cards<span class="marks">30 marks</span></div>
+
+            <h3>Task 3a (15 marks): "Receive Container delivery from Chinese Supplier"</h3>
+            <ul>
+                <li>Focus on warehouse operations</li>
+                <li>4-month delivery cycle</li>
+                <li>Container unpacking and inventory</li>
+            </ul>
+
+            <h3>Task 3b (15 marks): "Generate a monthly invoice for Trade Customers"</h3>
+            <ul>
+                <li>Account customer billing</li>
+                <li>Regular ordering patterns</li>
+                <li>Delivery charges and thresholds</li>
+            </ul>
+        </div>
+
+        <div class="key-info">
+            <h3>XP Story Card Template:</h3>
+            <ul>
+                <li><strong>Story Card Name:</strong> Clear, descriptive title</li>
+                <li><strong>Narrative:</strong> "As a [user], I want [goal] so that [reason]"</li>
+                <li>Focus on user value and business benefit</li>
+                <li>Keep stories independent and testable</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 7: Task 4 & 5 Details -->
+    <div class="slide">
+        <h1>Tasks 4 & 5: Requirements & Formatting</h1>
+
+        <div class="task-box">
+            <div class="task-title">Task 4: Non-Functional Requirements<span class="marks">10 marks</span></div>
+            <p>Detailed discussion for each category:</p>
+            <ul>
+                <li><strong>Efficiency:</strong> Resource utilisation, response times</li>
+                <li><strong>Dependability:</strong> Reliability, availability, fault tolerance</li>
+                <li><strong>Security:</strong> Data protection, access control, audit trails</li>
+                <li><strong>Performance:</strong> Throughput, scalability, load handling</li>
+                <li><strong>Operational:</strong> Maintainability, supportability, deployment</li>
+            </ul>
+        </div>
+
+        <div class="task-box">
+            <div class="task-title">Task 5: Professional Formatting<span class="marks">5 marks</span></div>
+            <ul>
+                <li>Word document with page numbers</li>
+                <li>Front cover with team details</li>
+                <li>Table of contents</li>
+                <li>16-point bold headings, 12-point Times New Roman body</li>
+                <li>Professional presentation standards</li>
+                <li>Figure numbers and references</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 8: Submission Requirements -->
+    <div class="slide">
+        <h1>Submission Requirements</h1>
+
+        <div class="deadline">
+            <h2>⚠️ CRITICAL DEADLINE: Friday, 18th July 2025 by 17:00</h2>
+        </div>
+
+        <h2>File Naming Conventions:</h2>
+        <div class="task-box">
+            <h3>Group Report (Group Leader Only):</h3>
+            <p><code>FSE Group_Report_Your_Full name.doc</code></p>
+
+            <h3>Peer Review (All Members Individually):</h3>
+            <p><code>FSE PeerReview_Report_Your_full name.doc</code></p>
+        </div>
+
+        <h2>What to Submit:</h2>
+        <ul>
+            <li>All diagrams produced</li>
+            <li>Complete reports</li>
+            <li>Documentation of assumptions made</li>
+            <li>Names, matriculation numbers, email addresses on front sheet</li>
+        </ul>
+
+        <div class="key-info">
+            <strong>Backup Strategy:</strong> Keep electronic copies and save acknowledgment receipt from GCULearn
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="slide-counter">
+    <span id="current-slide">1</span> / <span id="total-slides">12</span>
+</div>
+
+<div class="navigation">
+    <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">← Previous</button>
+    <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">Next →</button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    document.getElementById('total-slides').textContent = totalSlides;
+
+    function showSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active');
+
+        document.getElementById('current-slide').textContent = currentSlide + 1;
+
+        // Update navigation buttons
+        document.getElementById('prev-btn').disabled = currentSlide === 0;
+        document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+        if (direction === 1 && currentSlide < totalSlides - 1) {
+            showSlide(currentSlide + 1);
+        } else if (direction === -1 && currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            changeSlide(1);
+        } else if (e.key === 'ArrowLeft') {
+            changeSlide(-1);
+        }
+    });
+
+    // Initialise
+    showSlide(0);
+</script>
+</body>
+</html>
