@@ -1,0 +1,464 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Stakeholder Identification Guide},
+  pdfauthor={Based on Course Materials \& Workwear 4U Scenario},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Stakeholder Identification Guide}
+\subtitle{For Workwear 4U Coursework Tasks}
+\author{Based on Course Materials \& Workwear 4U Scenario}
+\date{2025-06-19}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Our Goal: Identify 4 Key Stakeholders}
+\phantomsection\label{our-goal-identify-4-key-stakeholders}
+\textbf{What we need to produce:}
+
+\begin{itemize}
+\tightlist
+\item
+  Stakeholder Register with 4 stakeholders (Task 1 - 20 marks)
+\item
+  Each stakeholder must connect to our use cases and XP stories
+\end{itemize}
+
+\textbf{Our specific deliverables:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Use Cases:} ``Place Order from retail shop'' \& ``Generate
+  Delivery Note''
+\item
+  \textbf{XP Stories:} ``Receive Container delivery'' \& ``Generate
+  monthly invoice''
+\end{itemize}
+
+\textbf{Method:} Work backwards from these deliverables to find
+stakeholders
+
+\emph{Source: CW Task 1 Specification \textbar{} Appendix A Template}
+\end{frame}
+
+\begin{frame}{Step 1: Extract Stakeholders from Use Cases}
+\phantomsection\label{step-1-extract-stakeholders-from-use-cases}
+\textbf{Use Case 1: ``Place Order from retail shop''}
+
+\begin{itemize}
+\tightlist
+\item
+  Who places the order?
+\item
+  Who receives the order?
+\item
+  Who processes the order?
+\end{itemize}
+
+\textbf{Use Case 2: ``Generate Delivery Note for Retail Outlet''}
+
+\begin{itemize}
+\tightlist
+\item
+  Who generates the note?
+\item
+  Who receives the delivery?
+\item
+  Who supplies the items?
+\end{itemize}
+
+\emph{Source: CW Task 2 Specifications \textbar{} FSE\_Lecture
+Slides\_Week 5 2425.pdf}
+\end{frame}
+
+\begin{frame}{Step 1: Suggested Answers}
+\phantomsection\label{step-1-suggested-answers}
+\textbf{Use Case 1 Suggestions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Who places the order? → \textbf{Retail Shop Staff/Manager}
+\item
+  Who receives the order? → \textbf{Head Office Administrator}
+\item
+  Who processes the order? → \textbf{Supplier} or \textbf{Warehouse
+  Staff}
+\end{itemize}
+
+\textbf{Use Case 2 Suggestions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Who generates the note? → \textbf{Warehouse Manager}
+\item
+  Who receives the delivery? → \textbf{Retail Shop Staff}
+\item
+  Who supplies the items? → \textbf{Chinese Supplier}
+\end{itemize}
+
+\emph{These are suggestions - discuss and decide what makes most sense
+for our analysis}
+\end{frame}
+
+\begin{frame}{Step 2: Extract Stakeholders from XP Stories}
+\phantomsection\label{step-2-extract-stakeholders-from-xp-stories}
+\textbf{XP Story 1: ``Receive Container delivery from Chinese
+Supplier''}
+
+\begin{itemize}
+\tightlist
+\item
+  Who benefits from this capability?
+\item
+  Who's directly involved in the process?
+\end{itemize}
+
+\textbf{XP Story 2: ``Generate monthly invoice for Trade Customers''}
+
+\begin{itemize}
+\tightlist
+\item
+  Who benefits from getting clear invoices?
+\item
+  Who would generate these invoices?
+\item
+  Who receives and pays the invoices?
+\end{itemize}
+
+\emph{Source: CW Task 3 Specifications \textbar{} FSE\_Lecture
+Slides\_Week 3 2425(1).pdf}
+\end{frame}
+
+\begin{frame}{Step 2: Suggested Answers}
+\phantomsection\label{step-2-suggested-answers}
+\textbf{XP Story 1 Suggestions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Who benefits? → \textbf{Warehouse Manager} (receives goods)
+\item
+  Who's involved? → \textbf{Chinese Supplier}, \textbf{Shipping Company}
+\end{itemize}
+
+\textbf{XP Story 2 Suggestions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Who benefits? → \textbf{Trade Customers} (get clear billing)
+\item
+  Who generates? → \textbf{Head Office Administrator}
+\item
+  Who pays? → \textbf{Trade Customers}
+\end{itemize}
+
+\emph{These are suggestions - consider what other stakeholders might be
+involved}
+\end{frame}
+
+\begin{frame}{Step 3: Map to Workwear 4U Scenario}
+\phantomsection\label{step-3-map-to-workwear-4u-scenario}
+\textbf{From the scenario, identify specific roles:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2609}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4348}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3043}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Stakeholder Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Specific Role in Workwear 4U
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Key Responsibilities
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\textbf{Internal Staff} & Head Office Administrator & Manual order
+processing, supplier contact \\
+\textbf{Internal Staff} & Warehouse Manager & Container unpacking, stock
+organisation \\
+\textbf{Internal Staff} & Retail Branch Manager & Customer orders, stock
+requests \\
+\textbf{External} & Chinese Supplier & Container shipments, specialist
+garments \\
+\textbf{External} & Trade Customers & Regular bulk orders, account
+management \\
+\textbf{External} & UK Suppliers & Direct shop deliveries \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\emph{Source: CW Scenario Description (pages 3-5)}
+\end{frame}
+
+\begin{frame}{Step 4: Select Our 4 Most Important Stakeholders}
+\phantomsection\label{step-4-select-our-4-most-important-stakeholders}
+\textbf{Selection Criteria:}
+
+\begin{enumerate}
+\tightlist
+\item
+  \textbf{Frequency:} Appears in multiple use cases/stories
+\item
+  \textbf{High Impact:} Directly affected by new system
+\item
+  \textbf{High Influence:} Can make or break the project
+\item
+  \textbf{Business Importance:} Critical to Workwear 4U's success
+\end{enumerate}
+
+\textbf{Our Task:} From our Step 1-3 analysis, count how often each
+stakeholder appears, then apply business judgment.
+\end{frame}
+
+\begin{frame}{Step 4: Systematic Analysis Results}
+\phantomsection\label{step-4-systematic-analysis-results}
+\textbf{Most Frequent Stakeholders (from our analysis):}
+
+\begin{enumerate}
+\tightlist
+\item
+  \textbf{Head Office Administrator} (Use Case 1 + XP Story 2)
+\item
+  \textbf{Retail Shop Staff/Manager} (Both Use Cases)\\
+\item
+  \textbf{Warehouse Manager} (Use Case 2 + XP Story 1)
+\item
+  \textbf{Chinese Supplier} (Use Case 2 + XP Story 1)
+\end{enumerate}
+
+\textbf{Alternative Business-Focused Selection:}
+
+\begin{itemize}
+\tightlist
+\item
+  Replace \textbf{Chinese Supplier} with \textbf{Trade Customers}
+  (revenue importance)
+\item
+  Or replace with \textbf{UK Suppliers} (volume of transactions)
+\end{itemize}
+
+\emph{The systematic analysis gives you a starting point - apply
+business judgment for final selection}
+\end{frame}
+
+\begin{frame}{Step 5: Complete the Stakeholder Register}
+\phantomsection\label{step-5-complete-the-stakeholder-register}
+\textbf{For each of our 4 stakeholders, fill out:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Field
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Example: Head Office Administrator
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\textbf{Full Name} & Head Office Administrator \\
+\textbf{Job Role} & Order Processing Coordinator \\
+\textbf{Responsibilities} & Manual order entry, supplier
+communication \\
+\textbf{System Needs} & Automated order processing, real-time stock
+data \\
+\textbf{Power/Interest} & High/High (manages all orders) \\
+\textbf{Management Strategy} & Involve in all design decisions, regular
+feedback \\
+\bottomrule\noalign{}
+\end{longtable}
+
+\emph{Source: CW Appendix A Template}
+\end{frame}
+
+\begin{frame}{Validation: Connect Back to Deliverables}
+\phantomsection\label{validation-connect-back-to-deliverables}
+\textbf{Check our 4 stakeholders against:}
+
+✓ \textbf{Frequency Count:} Do they appear most often in our analysis?\\
+✓ \textbf{Use Case Actors:} Do they appear in our use case diagrams?\\
+✓ \textbf{XP Story Value:} Do they benefit from the user stories?\\
+✓ \textbf{System Impact:} Will the new system change how they work?\\
+✓ \textbf{Business Justification:} Can you explain why you chose them
+over others?
+
+\textbf{Remember:} Multiple valid selections are possible - justify our
+choices with evidence from the analysis.
+
+\emph{Source: Requirements Traceability \textbar{} FSE\_Lecture
+Slides\_Week 4 2425(1).pdf}
+\end{frame}
+
+\begin{frame}{Power/Interest Analysis}
+\phantomsection\label{powerinterest-analysis}
+\textbf{Power = Ability to influence the project} \textbf{Interest = How
+much the system affects them}
+
+\textbf{For each of our 4 stakeholders, assess:}
+
+\begin{itemize}
+\tightlist
+\item
+  What level of power do they have? (High/Medium/Low)
+\item
+  What level of interest do they have? (High/Medium/Low)
+\item
+  What management strategy follows from this?
+\end{itemize}
+
+\emph{Source: CW Appendix A \textbar{} Project Management Framework}
+\end{frame}
+
+\begin{frame}{Power/Interest: Example Assessments}
+\phantomsection\label{powerinterest-example-assessments}
+\textbf{Based on systematic analysis (most frequent stakeholders):}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Head Office Administrator:} High Power, High Interest (manages
+  all orders)
+\item
+  \textbf{Retail Shop Staff/Manager:} Medium Power, High Interest (daily
+  system users)
+\item
+  \textbf{Warehouse Manager:} Medium Power, High Interest (container
+  operations)
+\item
+  \textbf{Chinese Supplier:} Low Power, Medium Interest (external but
+  important supplier)
+\end{itemize}
+
+\textbf{Alternative business-focused example:}
+
+\begin{itemize}
+\tightlist
+\item
+  Replace \textbf{Chinese Supplier} with \textbf{Trade Customers:} High
+  Power, Medium Interest (major revenue but external users)
+\end{itemize}
+
+\textbf{Management Strategy:} High Power = Keep satisfied, High Interest
+= Keep informed
+
+\emph{Our power/interest analysis should match our chosen 4
+stakeholders}
+\end{frame}
+
+\begin{frame}{Final Checklist}
+\phantomsection\label{final-checklist}
+\textbf{Before submitting our stakeholder register:}
+
+✓ Exactly 4 stakeholders identified\\
+✓ Each connects to at least one use case or XP story\\
+✓ Selection justified by systematic analysis (frequency + business
+importance)\\
+✓ Clear, specific role descriptions (not generic)\\
+✓ Realistic power/interest assessments for our chosen stakeholders\\
+✓ Practical management strategies\\
+✓ Follows Appendix A template exactly
+
+\textbf{Remember:} Different people / groups may select different
+stakeholders - focus on strong justification and systematic approach.
+
+\emph{Source: CW Task 1 Marking Criteria}
+\end{frame}
+
+\end{document}
